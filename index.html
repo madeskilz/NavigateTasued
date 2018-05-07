@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        Navigate TASUED
+    </title> <!-- Character set configuration -->
+    <meta charset="UTF-8">
+    <!-- Viewport configuration, scaling options -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Hide the browser UI -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Android toolbar color -->
+    <meta name="theme-color" content="#69f0ae">
+    <link href="img/logo.png" rel="icon" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/materialize.css" rel="stylesheet" />
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <style>
+        a:hover {
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar-fixed" id="nav">
+        <nav class="navbar navbar-default bold appTop">
+            <div class="nav-wrapper container-fluid">
+                <!-- Mobile menu button -->
+                <a href="#" data-activates="m_menu" class="button-collapse"><i class="fa fa-sliders" style="color:#4e7423;font-size:16px;"></i></a>
+                <!-- Site name -->
+                <a class="navbar-brand col-xs-6" href="javascript:;">
+                    <img src="img/navit.png" class="mainAppLogo" />
+                    <img src="img/navitsmall.png" class="smallAppLogo" />
+                </a>
+				<a href="#" id="nav-toggle" data-toggle="collapse" data-target="#b_menu" class="searchtab pull-right"><i class="fa fa-search" style="color:#4e7423;font-size:16px;"></i></a>
+				
+                <!-- Static menu -->
+                <ul class="right hide-on-med-and-down table-of-contents">
+                    <li><a href="javascript:;" class="hybridMap act mapType">HYBRID MAP<span class="sr-only">(current)</span></a></li>
+                    <li><a href="javascript:;" class="roadMap mapType">ROAD MAP</a></li>
+                    <li><a href="#modalHelp" data-toggle="modal">HELP</a></li>
+                    <li><a href="#modalAbout" data-toggle="modal">ABOUT APP</a></li>
+                </ul>
+				<div id="b_menu" style="margin-left:5px;width:100%;" class="collapse navbar-collapse">
+                    <form class="navbar-form" role="search" id="filter" style="border:0 !important;" action="javascript:;">
+                                    <input id="txtSearch" class="form-control inputSearch" type="text" title="Search Location" placeholder="Search Location">
+                <ol id="task-list" style="display:block;background:#f8f8f8;">
+                    <li><a href="#" onclick="initialize('ogd')">OGD Hall</a></li>
+                    <li><a href="#" onclick="initialize('library')">University Library</a></li>
+                    <li><a href="#" onclick="initialize('pps')">Alex O Science Complex (PPS)</a></li>
+                    <li><a href="#" onclick="initialize('ict')">ICT</a></li>
+                    <li><a href="#" onclick="initialize('sbk')">SBK</a></li>
+                    <li><a href="#" onclick="initialize('cepep')">CEPEP</a></li>
+                    <li><a href="#" onclick="initialize('auditorium')">Auditorium</a></li>
+                    <li><a href="#" onclick="initialize('elearning')">E-Learning</a></li>
+                    <li><a href="#" onclick="initialize('vcbuilding')">VC Office</a></li>
+                    <li><a href="#" onclick="initialize('adoffice')">Admission Office</a></li>
+                    <li><a href="#" onclick="initialize('lt')">Lecture theatre (LT)</a></li>
+                    <li><a href="#" onclick="initialize('etfcoaevot')">ETF</a></li>
+                    <li><a href="#" onclick="initialize('kaaf')">KAAF</a></li>
+                    <li><a href="#" onclick="initialize('coaevot')">COAEVOT</a></li>
+                    <li><a href="#" onclick="initialize('cosmas')">COSMAS</a></li>
+                    <li><a href="#" onclick="initialize('clinic')">Health Center (Clinic)</a></li>
+                    <li><a href="#" onclick="initialize('field')">School Field</a></li>
+                </ol>
+                    </form>
+                </div>
+                <!-- Mobile menu, make sure it is equal to the statis menu -->
+                <ul class="side-nav" id="m_menu">
+                    <div class="mobmenu">
+                        <div class="inmenu">
+                            <img src="img/logo.png" class="responsive-img" alt="Logo" style="margin:auto;width:70%;">
+                        </div>
+                        <div class="menuid">
+                            <span style="color:#848124;font-weight:bolder;">Navigate TASUED</span>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="divider"></div>
+                    </div>
+                    <li><a href="javascript:;" class="hybridMap act mapType"><i class='fa fa-image sidemenimg'></i>HYBRID MAP<span class="sr-only">(current)</span></a></li>
+                    <li><a href="javascript:;" class="roadMap mapType"><i class='fa fa-steam-square sidemenimg'></i>ROAD MAP</a></li>
+                    <li><a href="#modalHelp" data-toggle="modal"><i class='fa fa-compass sidemenimg'></i>HELP</a></li>
+                    <li><a href="#modalAbout" data-toggle="modal"><i class='fa fa-map-marker sidemenimg'></i>ABOUT APP</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div><div id="googleMap" class="col-xs-12 mapContainer"></div>
+    <div class="modal fade modTop" id="modalAbout" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" style="text-align:center;">
+                        <img src="img/navit.png" style="height:35px;" />
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">About Navi-T</h3>
+                    <p>
+                        This application is designed to serve as a navigation guide to new students and visitors to the
+                        school campus.
+                    </p>
+                    <p>
+                        <font class="authName">Adekoniye Adedoyin Michael</font> <br /> 
+						<strong>20120204012</strong> <br />
+						Computer Science Department
+                    </p>
+                    <p> &copy; 2016 </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">View Map</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade modTop" id="modalHelp" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" style="text-align:center;">
+                        <img src="img/navit.png" style="height:35px;" />
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center">Help</h3>
+                    <ol>
+                        <li>
+                            Pinch or spread screen to zoom in or out of the map.
+                        </li>
+                        <li>
+                            Drag map from one point in the opposing direction to pan across the map.
+                        </li>
+                        <li>
+                            Click on Road Map to change map type to a vector map showing road network and building structure.
+                        </li>
+                        <li>
+                            Click on Hybrid map to change map type to the default satelite view of the campus.
+                        </li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">View Map</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+	<div id="triangles" class="scrollspy display-hide"></div>
+    <!-- Scripts -->
+    <script src="scripts/build.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
